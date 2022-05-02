@@ -7,22 +7,22 @@ const Form = ({onSubmit, defaultValue, onError, model, children, ...props}) => {
     const [errors, setErrors] = useState()
 
     const handleSubmit = async (event) => {
-		event.preventDefault();
+        event.preventDefault();
         setErrors(null)
-		const form = new FormData(event.target);
-		const data = Object.fromEntries(form.entries()); 
+        const form = new FormData(event.target);
+        const data = Object.fromEntries(form.entries()); 
 
-		try {
-			await model.validate(data, { abortEarly: false });
-			onSubmit(data)
-		}
-		catch(error) {
+        try {
+            await model.validate(data, { abortEarly: false });
+            onSubmit(data)
+        }
+        catch(error) {
             const formErrors = yupToFormErrors(error.inner)
             console.error("[just-form] has validation errors:", formErrors)
-			setErrors(formErrors)
-			onError && onError(formErrors)
-		}
-	}
+            setErrors(formErrors)
+            onError && onError(formErrors)
+        }
+    }
 
     return (
         <form onSubmit={handleSubmit} {...props}>
