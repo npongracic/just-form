@@ -17,7 +17,7 @@ const ExampleApp = (props) => {
     const initialData = {
         text: 'Sample text',
         dateFrom: new Date(),
-        dateTo: new date()
+        dateTo: new Date()
     }
 
     // define your validation schema
